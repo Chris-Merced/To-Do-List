@@ -1,0 +1,37 @@
+body {
+    background-color: hsla(246, 19%, 11%, 0.829);
+    color: rgb(175, 170, 170);
+    font-family: Arsenal;
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+}
+
+@font-face {
+    font-family: Arsenal;
+    src: url('./ArsenalSC-Regular.ttf');
+}
+
+.input {
+    border-bottom: 2px solid rgb(43, 22, 22);
+    padding-bottom: 5px;
+    width: min(50vw, 900px);
+}
+
+.ProjectCard :first-child{
+    color: rgb(114, 108, 108);
+    padding-left: 25px;
+    padding-top: 50px; 
+    font-size: 1.7em;
+    font-weight: bold;
+}
+
+#newProject {
+    margin-top: auto;
+}
+
+.toDoListDisplay {
+    flex:auto;
+    margin-bottom: auto;
+}

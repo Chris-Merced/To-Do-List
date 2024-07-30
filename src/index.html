@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="input">
+        <form id="todo">
+            <label for='title'>Task: </label>
+            <input type="text" id="title" name="title">
+            <label for='description'>Description:</label>
+            <input type="text" id="description" name="description">
+            <label for="duedate">Date Due: </label>
+            <input type="date" id="duedate" name="duedate">
+            <label for="projects">Choose Project</label>
+            <select name="projects" id="projects" class="projects">
+                <option value="0">To Do List</option>
+            </select>
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>
+    <div class="toDoListDisplay">
+    </div>
+    <form id="newProject">
+        <label for = "project">Add Project: </label>
+        <input type="text" id="project" name="project">
+        <button type="submit" id="addProject">Submit</button>
+    </form>
+</body>
+</html>
