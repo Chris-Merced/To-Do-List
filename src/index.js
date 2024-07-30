@@ -54,6 +54,13 @@ function updateDisplay(projectList){
             var checkBox = document.createElement('input');
             
             checkBox.type = 'checkbox';
+            checkBox.checked=projectList[i][j].completed;
+            checkBox.addEventListener("change", ()=>{
+                if(projectList[i][j].completed===false){
+                    projectList[i][j].completed=true;
+                }else{projectList[i][j].completed=false;}
+                populateStorage();
+            })
 
             removeButton.textContent = "X";
             removeButton.addEventListener('click', ()=>{
@@ -61,6 +68,8 @@ function updateDisplay(projectList){
                 projectList[i].splice(j, 1);
                 populateStorage(); 
             } 
+
+
             )
             div.addEventListener('mouseenter', ()=>{
                 div.appendChild(removeButton);
@@ -116,7 +125,7 @@ function populateStorage(){
 
         selectArray.push(newSelect)
     }
-
+    console.log(JSON.parse(localStorage.getItem("array")))
     localStorage.setItem("selectArray", JSON.stringify(selectArray))
     
 }
@@ -133,6 +142,7 @@ function setStyle(){
         select.appendChild(option);
     }
     updateDisplay(projectList);
+    console.log(array);
 }
 
 
