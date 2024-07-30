@@ -58,7 +58,8 @@ function updateDisplay(projectList){
             removeButton.textContent = "X";
             removeButton.addEventListener('click', ()=>{
                 div.parentNode.removeChild(div);
-                toDoList.splice(i, 1); 
+                projectList[i].splice(j, 1);
+                populateStorage(); 
             } 
             )
             div.addEventListener('mouseenter', ()=>{
