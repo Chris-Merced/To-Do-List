@@ -3,26 +3,27 @@ import {toDoList, Todo} from './todo.js';
 import { toDoProject } from './toDoProject.js';
 
 const form = document.getElementById("todo");
-const projectList = [];
+let projectList = [];
 projectList.push(toDoList);
+
+if (!localStorage.getItem("array")){
+    populateStorage()
+}else{
+    setStyle();
+}
 
 
 form.addEventListener("submit", ()=>{
     event.preventDefault();
-    console.log('hello');
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const duedate = document.getElementById('duedate').value;
     const project = parseInt(document.getElementById("projects").value);
-
     const newTodo = new Todo(title, description, duedate, project);
-    console.log(newTodo);
     var tempLog = projectList[newTodo.project];
-    console.log(newTodo.project);
     tempLog.push(newTodo);
-    console.log(projectList);
     updateDisplay(projectList); 
-
+    populateStorage();
 })
 
 
@@ -91,7 +92,46 @@ addProjectForm.addEventListener("submit", ()=>{
     select.appendChild(option);
     const newList = [];
     projectList.push(newList);
+    populateStorage();
 })
 
+
+class selectObject{
+    constructor(value, name){
+        this.value=value;
+        this.name=name;
+    }
+}
+
+function populateStorage(){
+    localStorage.setItem("array", JSON.stringify(projectList))
+    
+    const selectArray=[];  
+    const select = document.getElementById("projects");
+    for (let i=0; i<select.children.length; i++){
+        
+        const name = document.getElementById('projects').options[i].textContent;
+        const newSelect = new selectObject(i, name);
+
+        selectArray.push(newSelect)
+    }
+
+    localStorage.setItem("selectArray", JSON.stringify(selectArray))
+    
+}
+
+function setStyle(){
+    const array = JSON.parse(localStorage.getItem("array"))
+    projectList = array;
+    const selectArray = JSON.parse(localStorage.getItem("selectArray"))
+    for (let i=1; i<array.length; i++){
+        const option = document.createElement("option")
+        const select = document.getElementById("projects")
+        option.value = selectArray[i].value;
+        option.textContent = selectArray[i].name;
+        select.appendChild(option);
+    }
+    updateDisplay(projectList);
+}
 
 
